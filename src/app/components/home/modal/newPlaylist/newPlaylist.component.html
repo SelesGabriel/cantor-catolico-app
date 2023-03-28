@@ -1,0 +1,81 @@
+<fa-icon
+  [icon]="faPlusCircle"
+  size="2x"
+  style="margin-bottom: 20px"
+  (click)="openModal(template)"
+></fa-icon>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modal</h4>
+    <button
+      type="button"
+      class="btn-close close pull-right"
+      aria-label="Close"
+      (click)="modalRef?.hide()"
+    >
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div id="modal-1" class="modal fade" role="dialog" tabindex="-1">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Modal Title</h4>
+            <button
+              class="btn-close"
+              type="button"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>The content of your modal.</p>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-light" type="button" data-bs-dismiss="modal">
+              Close</button
+            ><button class="btn btn-primary" type="button">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <form
+      style="max-width: 700px"
+      role="form"
+      action="indexTeachers.html"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      <div class="form-group mb-3">
+        <label class="form-label">Nome da Playlist</label
+        ><select id="tomSelect2" class="form-select" required>
+          <option value="1">Nova Playlist</option>
+          <option *ngFor="let playlist of playlists" [value]="playlist.nome">
+            {{ playlist.nome }}
+          </option>
+        </select>
+      </div>
+      <div class="form-group mb-3">
+        <label class="form-label">Nome da Música</label>
+        <input
+          type="text"
+          disabled
+          value="{{ musica.nome + ' - ' + musica.cantor }}"
+          class="form-control"
+        />
+      </div>
+      <hr style="margin-top: 30px; margin-bottom: 10px" />
+      <div class="form-group mb-3">
+        <button
+          id="submitButton"
+          class="btn btn-secondary d-block w-100"
+          type="submit"
+        >
+          <i class="fas fa-save"></i>Salvar
+        </button>
+      </div>
+    </form>
+  </div>
+</ng-template>

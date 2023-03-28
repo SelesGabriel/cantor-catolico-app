@@ -1,0 +1,87 @@
+<div class="bg-light album py-5">
+  <div class="container">
+    <div class="input-group">
+      <input
+        [(ngModel)]="filterList"
+        class="form-control"
+        type="text"
+        placeholder="Search"
+      /><button
+        id="button-addon2"
+        class="btn btn-outline-secondary"
+        type="button"
+      >
+        <fa-icon [icon]="faSearch"></fa-icon>
+      </button>
+    </div>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      <div *ngFor="let musica of filteredMusics">
+        <div class="col">
+          <small class="text-muted" *ngFor="let item of musica.categorias">{{
+            item | uppercase
+          }}</small>
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <div class="flex-row justify-content-center align-items-center">
+                <div
+                  style="
+                    height: 200px;
+                    max-width: 100%;
+                    padding-top: 7%;
+                    border:  solid
+                  "
+                  class="text-center"
+                >
+                  <fa-icon
+                    [icon]="faPlay"
+                    style="width: 100%; height: 100%"
+                    size="10x"
+                    *ngIf="mostrarPlayerPadrao"
+                    (click)="mostrarPlayerYoutube()"
+                  ></fa-icon>
+                  <iframe
+                    *ngIf="!mostrarPlayerPadrao"
+                    controls
+                    style="width: 100%; height: 100%"
+                    [src]="musica.youtube"
+                  >
+                  </iframe>
+                </div>
+              </div>
+              <br />
+              <p class="card-text">
+                {{ musica.nome | uppercase }} - {{ musica.cantor | uppercase }}
+              </p>
+              <div class="row">
+                <div class="col col-4">
+                  <div></div>
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <p class="card-text">LETRA</p>
+                  </div>
+                </div>
+                <div class="col col-4">
+                  <div></div>
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <p class="card-text"></p>
+                  </div>
+                </div>
+                <div class="col col-4">
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <p class="card-text">CIFRA</p>
+                    <app-newPlaylist [musica]="musica"></app-newPlaylist>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
